@@ -1,25 +1,25 @@
-module dff_sync_clear(q,d,clear,clock);
+module dff_sync_reset(q,d,reset,clock);
     output q;
-    input d,clear,clock;
+    input d,reset,clock;
     reg q;
     
     always @(posedge clock)
     begin
-        if(!clear)
+        if(!reset)
            q<=1'b0;
         else
            q<=d;
        end
 endmodule
            
-module dff_async_clear(q,d,clear,clock);
+module dff_async_reset(q,d,reset,clock);
     output q;
-    input d,clear,clock;
+    input d,reset,clock;
     reg q;
     
-    always @(posedge clock or negedge clear)
+    always @(posedge clock or negedge reset)
     begin
-        if(!clear)
+        if(!reset)
            q<=1'b0;
         else
            q<=d;
